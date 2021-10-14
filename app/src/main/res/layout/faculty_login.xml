@@ -46,7 +46,7 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
         android:layout_marginTop="30dp"
-        android:hint="Enter Your ID">
+        android:hint="Faculty ID">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/faculty_id_login"
@@ -73,7 +73,7 @@
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
         android:layout_marginTop="30dp"
-        android:hint="Enter Your ID"
+        android:hint="Faculty Password"
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
