@@ -12,6 +12,12 @@
         <action
             android:id="@+id/action_optionsFragment_to_facultyLoginFragment"
             app:destination="@id/facultyLoginFragment" />
+        <action
+            android:id="@+id/action_optionsFragment_to_adminLoginFragment"
+            app:destination="@id/adminLoginFragment" />
+        <action
+            android:id="@+id/action_optionsFragment_to_studentLoginFragment"
+            app:destination="@id/studentLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/facultyLoginFragment"
@@ -21,11 +27,35 @@
         <action
             android:id="@+id/action_facultyLoginFragment_to_facultyHomeFragment"
             app:destination="@id/facultyHomeFragment" />
+        <action
+            android:id="@+id/action_facultyLoginFragment_pop_including_optionsFragment"
+            app:popUpTo="@id/optionsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/facultyHomeFragment"
         android:name="com.example.academicapp.fragments.faculty.FacultyHomeFragment"
         android:label="faculty_home_fragment"
         tools:layout="@layout/faculty_home_fragment" >
+    </fragment>
+    <fragment
+        android:id="@+id/adminLoginFragment"
+        android:name="com.example.academicapp.fragments.AdminLoginFragment"
+        android:label="admin_login"
+        tools:layout="@layout/admin_login" >
+        <action
+            android:id="@+id/action_adminLoginFragment_pop_including_optionsFragment"
+            app:popUpTo="@id/optionsFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/studentLoginFragment"
+        android:name="com.example.academicapp.fragments.StudentLoginFragment"
+        android:label="student_login"
+        tools:layout="@layout/student_login" >
+        <action
+            android:id="@+id/action_studentLoginFragment_pop_including_optionsFragment"
+            app:popUpTo="@id/optionsFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

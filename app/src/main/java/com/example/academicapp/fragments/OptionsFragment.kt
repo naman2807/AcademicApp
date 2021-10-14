@@ -39,5 +39,10 @@ class OptionsFragment : Fragment() {
             findNavController().navigate(R.id.action_optionsFragment_to_facultyLoginFragment)
         }
 
+        val admin = binding.adminCardView
+        admin.setOnClickListener {
+            findNavController().navigate(R.id.action_optionsFragment_to_adminLoginFragment)
+        }
+
     }
 }
