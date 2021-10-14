@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.academicapp.R
 import com.example.academicapp.databinding.FragmentOptionsBinding
 
 class OptionsFragment : Fragment() {
@@ -31,6 +33,11 @@ class OptionsFragment : Fragment() {
         animation.repeatMode = Animation.REVERSE
         animation.repeatCount = Animation.INFINITE
         textView.startAnimation(animation)
+
+        val faculty = binding.facultyCardView
+        faculty.setOnClickListener {
+            findNavController().navigate(R.id.action_optionsFragment_to_facultyLoginFragment)
+        }
 
     }
 }
