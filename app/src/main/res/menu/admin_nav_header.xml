@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/setting"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_user"/>
+    <item
+        android:id="@+id/gg"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_user"/>
+    <item
+        android:id="@+id/setting2"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_user"/>
+</menu>
