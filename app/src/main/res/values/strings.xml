@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">AcademicApp</string>
     <string name="welcome_to_gla_university">Welcome To GLA University</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 </resources>
