@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/error_icon.xml" value="0.26666666666666666" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_admin.xml" value="0.26222826086956524" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_faculty.xml" value="0.26222826086956524" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_main.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_student.xml" value="0.26222826086956524" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin.xml" value="0.26222826086956524" />
@@ -11,6 +13,7 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/faculty_login.xml" value="0.2653985507246377" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/fragment_options.xml" value="0.2" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/splashscreen.xml" value="0.24320652173913043" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/student_home_fragment.xml" value="0.2755208333333333" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/student_login.xml" value="0.26222826086956524" />
       </map>
     </option>

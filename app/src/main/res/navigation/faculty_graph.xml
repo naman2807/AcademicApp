@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/faculty_graph">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/faculty_graph"
+    app:startDestination="@id/facultyHomeFragment">
 
+    <fragment
+        android:id="@+id/facultyHomeFragment"
+        android:name="com.example.academicapp.fragments.faculty.FacultyHomeFragment"
+        android:label="faculty_home_fragment"
+        tools:layout="@layout/faculty_home_fragment" />
 </navigation>
