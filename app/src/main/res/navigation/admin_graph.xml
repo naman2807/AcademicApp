@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/admin_graph">
+    android:id="@+id/admin_graph"
+    app:startDestination="@id/adminHomeFragment">
 
+    <fragment
+        android:id="@+id/adminHomeFragment"
+        android:name="com.example.academicapp.fragments.admin.AdminHomeFragment"
+        android:label="AdminHomeFragment" />
 </navigation>
