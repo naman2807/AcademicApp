@@ -1,4 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottom_home"
+        android:icon="@drawable/ic_baseline_user"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/bottom_1"
+        android:icon="@drawable/ic_baseline_user"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/bottom_2e"
+        android:icon="@drawable/ic_baseline_user"
+        android:title="Home"/>
 
 </menu>
