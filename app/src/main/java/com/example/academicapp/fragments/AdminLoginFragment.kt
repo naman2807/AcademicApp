@@ -24,6 +24,9 @@ class AdminLoginFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.login.setOnClickListener {
             val intent = Intent(requireContext(), AdminActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
             startActivity(intent)
         }
     }

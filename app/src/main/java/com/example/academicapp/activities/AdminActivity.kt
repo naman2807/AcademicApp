@@ -6,11 +6,15 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
+import com.example.academicapp.fragments.admin.AdminHomeFragment
+import com.example.academicapp.fragments.admin.AdminUploadNoticeFragment
+import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
@@ -18,6 +22,7 @@ import com.google.android.material.navigation.NavigationView
 class AdminActivity: AppCompatActivity() {
     private lateinit var toggle: ActionBarDrawerToggle
     private lateinit var selectedFragment : Fragment
+    private val viewModel: AdminViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,14 +49,14 @@ class AdminActivity: AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> Toast.makeText(this, "Bottom Navigation 1", Toast.LENGTH_SHORT)
-                    .show()
-                R.id.upload_notice -> Toast.makeText(this, "Bottom Navigation 2", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.home -> selectedFragment = AdminHomeFragment()
+                R.id.upload_notice -> selectedFragment = AdminUploadNoticeFragment()
                 R.id.bottom_2e -> Toast.makeText(this, "Bottom Navigation 3", Toast.LENGTH_SHORT)
                     .show()
             }
-//            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, selectedFragment).commit()
+
+            viewModel.selectFragment(selectedFragment)
+            supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, selectedFragment).commit()
             return@setOnItemSelectedListener true
 
 
