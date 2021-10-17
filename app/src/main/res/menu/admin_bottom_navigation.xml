@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/bottom_home"
-        android:icon="@drawable/ic_baseline_user"
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
         android:title="Home"/>
 
     <item
-        android:id="@+id/bottom_1"
-        android:icon="@drawable/ic_baseline_user"
-        android:title="Home"/>
+        android:id="@+id/upload_notice"
+        android:icon="@drawable/ic_notice"
+        android:title="Upload Notice"/>
 
     <item
         android:id="@+id/bottom_2e"
