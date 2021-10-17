@@ -44,9 +44,9 @@ class AdminActivity: AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.bottom_home -> Toast.makeText(this, "Bottom Navigation 1", Toast.LENGTH_SHORT)
+                R.id.home -> Toast.makeText(this, "Bottom Navigation 1", Toast.LENGTH_SHORT)
                     .show()
-                R.id.bottom_1 -> Toast.makeText(this, "Bottom Navigation 2", Toast.LENGTH_SHORT)
+                R.id.upload_notice -> Toast.makeText(this, "Bottom Navigation 2", Toast.LENGTH_SHORT)
                     .show()
                 R.id.bottom_2e -> Toast.makeText(this, "Bottom Navigation 3", Toast.LENGTH_SHORT)
                     .show()
