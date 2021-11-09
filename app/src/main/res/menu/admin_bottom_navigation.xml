@@ -11,8 +11,8 @@
         android:title="Upload Notice"/>
 
     <item
-        android:id="@+id/bottom_2e"
-        android:icon="@drawable/ic_baseline_user"
-        android:title="Home"/>
+        android:id="@+id/upload_function_image"
+        android:icon="@drawable/ic_add_image"
+        android:title="Upload Function Image"/>
 
 </menu>
