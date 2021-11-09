@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.fragments.admin.AdminHomeFragment
+import com.example.academicapp.fragments.admin.AdminUploadFunctionImageFragment
 import com.example.academicapp.fragments.admin.AdminUploadNoticeFragment
 import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -51,8 +52,7 @@ class AdminActivity: AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> selectedFragment = AdminHomeFragment()
                 R.id.upload_notice -> selectedFragment = AdminUploadNoticeFragment()
-                R.id.upload_function_image -> Toast.makeText(this, "Bottom Navigation 3", Toast.LENGTH_SHORT)
-                    .show()
+                R.id.upload_function_image -> selectedFragment = AdminUploadFunctionImageFragment()
             }
 
             viewModel.selectFragment(selectedFragment)
