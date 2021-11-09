@@ -51,7 +51,7 @@ class AdminActivity: AppCompatActivity() {
             when (it.itemId) {
                 R.id.home -> selectedFragment = AdminHomeFragment()
                 R.id.upload_notice -> selectedFragment = AdminUploadNoticeFragment()
-                R.id.bottom_2e -> Toast.makeText(this, "Bottom Navigation 3", Toast.LENGTH_SHORT)
+                R.id.upload_function_image -> Toast.makeText(this, "Bottom Navigation 3", Toast.LENGTH_SHORT)
                     .show()
             }
 
