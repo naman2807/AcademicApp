@@ -24,5 +24,6 @@ class AdminUploadFunctionImageFragment: Fragment() {
     override fun onResume() {
         super.onResume()
         val adapter = ArrayAdapter(requireContext(), R.layout.function_text, resources.getStringArray(R.array.functions))
+        binding.functionTypeEditText.setAdapter(adapter)
     }
 }
