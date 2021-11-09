@@ -3,4 +3,12 @@
     <string name="welcome_to_gla_university">Welcome To GLA University</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string-array name="functions">
+        <item>Republic Day</item>
+        <item>Independence Day</item>
+        <item>Gandhi Jayanti</item>
+        <item>Diwali</item>
+        <item>Christmas</item>
+        <item>Sports</item>
+    </string-array>
 </resources>
