@@ -4,6 +4,11 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="please_wait_image_is_being_uploading">Please Wait, Image is being uploading!!</string>
+    <string name="subject">Subject</string>
+    <string name="choose_function_image">Choose Function Image</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="select_pdf">Select pdf</string>
+    <string name="upload_pdf">Upload pdf</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
