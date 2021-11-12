@@ -14,6 +14,7 @@ import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadFunctionImageFragmentBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
@@ -61,13 +62,13 @@ class AdminUploadFunctionImageFragment : Fragment() {
                 Toast.LENGTH_SHORT).show()
         } else {
             databaseReference =
-                FirebaseDatabase.getInstance().getReference("Function_Image/$functionType")
+                FirebaseDatabase.getInstance().getReference("Functions/$functionType")
             databaseReference.setValue(information).addOnCompleteListener {
                 if (it.isSuccessful) {
                     uploadImage()
                 } else {
                     Toast.makeText(requireContext(),
-                        "Cannot upload image to database",
+                        "Cannot upload information to database",
                         Toast.LENGTH_SHORT).show()
                 }
             }
@@ -76,7 +77,17 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     private fun uploadImage() {
-
+        val functionType: String = binding.functionTypeEditText.text.toString()
+        storageReference = FirebaseStorage.getInstance().getReference("Functions/$functionType")
+        storageReference.putFile(imageUri).addOnSuccessListener {
+            Toast.makeText(requireContext(),
+                "Image uploaded successfully.",
+                Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+            Toast.makeText(requireContext(),
+                "Cannot upload image to database",
+                Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun selectImage() {
