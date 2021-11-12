@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadFunctionImageFragmentBinding
 import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import java.io.File
 
 class AdminUploadFunctionImageFragment: Fragment() {
@@ -47,7 +48,8 @@ class AdminUploadFunctionImageFragment: Fragment() {
     }
 
     private fun uploadImage() {
-
+        val information: String = binding.functionInformationEditText.text.toString()
+        val functionType: String = binding.functionTypeEditText.text.toString()
     }
 
     private fun selectImage() {
