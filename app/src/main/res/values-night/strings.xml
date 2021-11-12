@@ -17,4 +17,14 @@
         <item>Christmas</item>
         <item>Sports</item>
     </string-array>
+    <string-array name="subjects">
+        <item>Software Engineering</item>
+        <item>Operating System</item>
+        <item>Networking</item>
+        <item>DBMS</item>
+        <item>Object Oriented Programming</item>
+        <item>Microprocessor</item>
+        <item>Maths</item>
+        <item>English</item>
+    </string-array>
 </resources>
