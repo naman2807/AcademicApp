@@ -3,6 +3,7 @@
     <string name="welcome_to_gla_university">Welcome To GLA University</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="please_wait_image_is_being_uploading">Please Wait, Image is being uploading!!</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
