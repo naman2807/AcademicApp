@@ -101,4 +101,8 @@ class AdminUploadFunctionImageFragment : Fragment() {
             resources.getStringArray(R.array.functions))
         binding.functionTypeEditText.setAdapter(adapter)
     }
+
+    private fun showProgressBar(){
+
+    }
 }
