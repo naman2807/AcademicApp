@@ -1,5 +1,6 @@
 package com.example.academicapp.fragments.admin
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.academicapp.databinding.AdminUploadPdfFragmentBinding
 
 class AdminUploadPdfFragment: Fragment() {
     private lateinit var binding: AdminUploadPdfFragmentBinding
+    private lateinit var pdfUri: Uri
 
     override fun onCreateView(
         inflater: LayoutInflater,

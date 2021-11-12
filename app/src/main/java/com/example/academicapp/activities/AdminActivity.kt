@@ -44,8 +44,10 @@ class AdminActivity: AppCompatActivity() {
                 R.id.gg -> Toast.makeText(this, "Navigation 2", Toast.LENGTH_SHORT).show()
                 R.id.setting2 -> Toast.makeText(this, "Navigation 3", Toast.LENGTH_SHORT).show()
             }
+
             viewModel.selectFragment(selectedFragment)
             supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, selectedFragment).commit()
+            drawerLayout.closeDrawers()
             return@setNavigationItemSelectedListener true
         }
 
