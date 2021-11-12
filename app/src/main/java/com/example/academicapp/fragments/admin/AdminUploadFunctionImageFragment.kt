@@ -1,5 +1,6 @@
 package com.example.academicapp.fragments.admin
 
+import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -23,6 +24,7 @@ class AdminUploadFunctionImageFragment : Fragment() {
     private lateinit var imageUri: Uri
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
+    private lateinit var dialog: Dialog
 
     val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent(),
