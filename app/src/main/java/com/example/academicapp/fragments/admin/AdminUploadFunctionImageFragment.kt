@@ -126,7 +126,7 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     private fun getCurrentDate():String {
-        val sdf = SimpleDateFormat("yyyy/MM/dd")
+        val sdf = SimpleDateFormat("yyyy/MM/dd/hh:mm:ss")
         val date = Calendar.getInstance().time
         return sdf.format(date)
     }
