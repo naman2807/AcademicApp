@@ -55,6 +55,7 @@ class AdminUploadNoticeFragment: Fragment() {
         storageReference.putFile(imageUri)
             .addOnSuccessListener {
                 binding.notice.setImageURI(null)
+                clearData()
                 Toast.makeText(requireContext(), "$fileName notice Uploaded Successfully", Toast.LENGTH_SHORT).show()
                 if(progressDialog.isShowing) progressDialog.dismiss()
             }.addOnFailureListener{
@@ -68,7 +69,7 @@ class AdminUploadNoticeFragment: Fragment() {
     }
 
     private fun clearData(){
-
+        binding.noticeDescriptionEditText.setText("")
     }
 
 }
