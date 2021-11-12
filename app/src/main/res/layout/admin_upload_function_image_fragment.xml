@@ -78,8 +78,8 @@
             android:id="@+id/function_image_edit_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:maxLines="1"
-            android:inputType="none"/>
+            android:inputType="none"
+            android:editable="false"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
