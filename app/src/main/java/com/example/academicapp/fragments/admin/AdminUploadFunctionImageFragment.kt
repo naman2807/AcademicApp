@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
@@ -18,6 +19,8 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AdminUploadFunctionImageFragment : Fragment() {
     private lateinit var binding: AdminUploadFunctionImageFragmentBinding
@@ -54,21 +57,24 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     private fun uploadFunctionImage() {
+        showProgressBar()
         val information: String = binding.functionInformationEditText.text.toString()
         val functionType: String = binding.functionTypeEditText.text.toString()
         if (information.trim().isBlank() || information.trim().isEmpty() || functionType.trim()
                 .isEmpty() || functionType.trim().isBlank()
         ) {
+            hideProgressBar()
             Toast.makeText(requireContext(),
                 "Empty Fields. Cannot upload image",
                 Toast.LENGTH_SHORT).show()
         } else {
             databaseReference =
-                FirebaseDatabase.getInstance().getReference("Functions/$functionType")
+                FirebaseDatabase.getInstance().getReference("Functions/$functionType/${getCurrentDate()}")
             databaseReference.setValue(information).addOnCompleteListener {
                 if (it.isSuccessful) {
                     uploadImage()
                 } else {
+                    hideProgressBar()
                     Toast.makeText(requireContext(),
                         "Cannot upload information to database",
                         Toast.LENGTH_SHORT).show()
@@ -80,12 +86,14 @@ class AdminUploadFunctionImageFragment : Fragment() {
 
     private fun uploadImage() {
         val functionType: String = binding.functionTypeEditText.text.toString()
-        storageReference = FirebaseStorage.getInstance().getReference("Functions/$functionType")
+        storageReference = FirebaseStorage.getInstance().getReference("Functions/$functionType/${getCurrentDate()}")
         storageReference.putFile(imageUri).addOnSuccessListener {
+            hideProgressBar()
             Toast.makeText(requireContext(),
                 "Image uploaded successfully.",
                 Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
+            hideProgressBar()
             Toast.makeText(requireContext(),
                 "Cannot upload image to database",
                 Toast.LENGTH_SHORT).show()
@@ -105,10 +113,24 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     private fun showProgressBar(){
-
+        dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.progress_bar)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
     }
 
     private fun hideProgressBar(){
+        dialog.dismiss()
+    }
+
+    private fun getCurrentDate():String {
+        val sdf = SimpleDateFormat("yyyy/MM/dd")
+        val date = Calendar.getInstance().time
+        return sdf.format(date)
+    }
+
+    private fun clearData(){
 
     }
 }

@@ -79,9 +79,6 @@ dependencies {
 
     // Progress bar
     implementation 'com.jpardogo.googleprogressbar:library:1.2.0'
-
-    // Circular Image Library
-    implementation 'de.hdodenhof:circularimageview:3.1.0'
     
     implementation 'androidx.activity:activity-compose:1.3.1'
     testImplementation 'junit:junit:4.+'
