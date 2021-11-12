@@ -89,6 +89,7 @@ class AdminUploadFunctionImageFragment : Fragment() {
         storageReference = FirebaseStorage.getInstance().getReference("Functions/$functionType/${getCurrentDate()}")
         storageReference.putFile(imageUri).addOnSuccessListener {
             hideProgressBar()
+            clearData()
             Toast.makeText(requireContext(),
                 "Image uploaded successfully.",
                 Toast.LENGTH_SHORT).show()
@@ -131,6 +132,8 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     private fun clearData(){
-
+        binding.functionImageEditText.setText("")
+        binding.functionTypeEditText.setText("")
+        binding.functionInformationEditText.setText("")
     }
 }
