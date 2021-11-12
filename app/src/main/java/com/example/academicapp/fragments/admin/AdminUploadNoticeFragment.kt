@@ -67,4 +67,8 @@ class AdminUploadNoticeFragment: Fragment() {
         getImage.launch("image/*")
     }
 
+    private fun clearData(){
+
+    }
+
 }
