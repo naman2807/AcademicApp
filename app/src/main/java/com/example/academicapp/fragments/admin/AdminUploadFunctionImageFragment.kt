@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
@@ -13,12 +14,14 @@ import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadFunctionImageFragmentBinding
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.StorageReference
 import java.io.File
 
-class AdminUploadFunctionImageFragment: Fragment() {
+class AdminUploadFunctionImageFragment : Fragment() {
     private lateinit var binding: AdminUploadFunctionImageFragmentBinding
     private lateinit var imageUri: Uri
     private lateinit var databaseReference: DatabaseReference
+    private lateinit var storageReference: StorageReference
 
     val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent(),
@@ -31,7 +34,7 @@ class AdminUploadFunctionImageFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = AdminUploadFunctionImageFragmentBinding.inflate(inflater, container, false)
         return binding.root
@@ -43,13 +46,37 @@ class AdminUploadFunctionImageFragment: Fragment() {
         }
 
         binding.uploadFunctionImageButton.setOnClickListener {
-            uploadImage()
+            uploadFunctionImage()
         }
     }
 
-    private fun uploadImage() {
+    private fun uploadFunctionImage() {
         val information: String = binding.functionInformationEditText.text.toString()
         val functionType: String = binding.functionTypeEditText.text.toString()
+        if (information.trim().isBlank() || information.trim().isEmpty() || functionType.trim()
+                .isEmpty() || functionType.trim().isBlank()
+        ) {
+            Toast.makeText(requireContext(),
+                "Empty Fields. Cannot upload image",
+                Toast.LENGTH_SHORT).show()
+        } else {
+            databaseReference =
+                FirebaseDatabase.getInstance().getReference("Function_Image/$functionType")
+            databaseReference.setValue(information).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    uploadImage()
+                } else {
+                    Toast.makeText(requireContext(),
+                        "Cannot upload image to database",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
+    }
+
+    private fun uploadImage() {
+
     }
 
     private fun selectImage() {
@@ -58,7 +85,9 @@ class AdminUploadFunctionImageFragment: Fragment() {
 
     override fun onResume() {
         super.onResume()
-        val adapter = ArrayAdapter(requireContext(), R.layout.function_text, resources.getStringArray(R.array.functions))
+        val adapter = ArrayAdapter(requireContext(),
+            R.layout.function_text,
+            resources.getStringArray(R.array.functions))
         binding.functionTypeEditText.setAdapter(adapter)
     }
 }
