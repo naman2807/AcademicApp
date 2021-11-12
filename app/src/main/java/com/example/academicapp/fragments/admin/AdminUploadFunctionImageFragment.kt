@@ -105,4 +105,8 @@ class AdminUploadFunctionImageFragment : Fragment() {
     private fun showProgressBar(){
 
     }
+
+    private fun hideProgressBar(){
+
+    }
 }
