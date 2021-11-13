@@ -10,6 +10,7 @@
     <string name="select_pdf">Select pdf</string>
     <string name="upload_pdf">Upload pdf</string>
     <string name="name_of_faculty">Name Of Faculty</string>
+    <string name="address_of_faculty">Address of Faculty</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
