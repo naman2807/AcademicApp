@@ -6,6 +6,7 @@ import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,7 +26,7 @@ import java.io.File
 
 class AdminUploadPdfFragment: Fragment() {
     private lateinit var binding: AdminUploadPdfFragmentBinding
-    private lateinit var pdfUri: Uri
+    private var pdfUri: Uri? = null
     private lateinit var dialog: Dialog
     private lateinit var storageReference: StorageReference
 
@@ -52,7 +53,7 @@ class AdminUploadPdfFragment: Fragment() {
         ActivityResultContracts.GetContent(),
         ActivityResultCallback {
             pdfUri = it
-            binding.subjectPdfEditText.setText(File(pdfUri.path).name.toString())
+            binding.subjectPdfEditText.setText(File(pdfUri!!.path).name.toString())
         }
     )
 
@@ -79,18 +80,16 @@ class AdminUploadPdfFragment: Fragment() {
         if(!validateData()){
             Toast.makeText(requireContext(), "Some fields are empty", Toast.LENGTH_SHORT).show()
         }else {
-            if(validateData()){
                 showProgressBar()
                 val subject = binding.subjectTypeEditText.text.toString()
                 val pdf = binding.subjectPdfEditText.text.toString()
                 storageReference = FirebaseStorage.getInstance().getReference("pdf/$subject/$pdf")
                 uploadToStorage()
-            }
         }
     }
 
     private fun uploadToStorage(){
-        storageReference.putFile(pdfUri).addOnSuccessListener {
+        storageReference.putFile(pdfUri!!).addOnSuccessListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Pdf uploaded successfully", Toast.LENGTH_SHORT).show()
             clearData()
@@ -99,15 +98,24 @@ class AdminUploadPdfFragment: Fragment() {
         }
     }
 
-    private fun validateData(): Boolean{
+    private fun validateData(): Boolean {
         val subject = binding.subjectTypeEditText.text.toString()
         val pdf = binding.subjectPdfEditText.text.toString()
-        if(subject.trim().isBlank() || subject.trim().isEmpty()){
+        if (subject.trim().isBlank() || subject.trim().isEmpty()) {
             binding.subjectTypeLayout.isErrorEnabled = true
             binding.subjectTypeLayout.error = "Empty Field"
-            if(pdf.trim().isEmpty() || pdf.trim().isBlank()){
+            if (pdfUri == null) {
                 binding.subjectPdfLayout.isErrorEnabled = true
                 binding.subjectPdfLayout.error = "Empty Field"
+            }
+            return false
+        }
+        if (pdfUri == null) {
+            binding.subjectPdfLayout.isErrorEnabled = true
+            binding.subjectPdfLayout.error = "Empty Field"
+            if (subject.trim().isBlank() || subject.trim().isEmpty()) {
+                binding.subjectTypeLayout.isErrorEnabled = true
+                binding.subjectTypeLayout.error = "Empty Field"
             }
             return false
         }

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadFunctionImageFragmentBinding
@@ -24,7 +25,7 @@ import java.util.*
 
 class AdminUploadFunctionImageFragment : Fragment() {
     private lateinit var binding: AdminUploadFunctionImageFragmentBinding
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
     private lateinit var dialog: Dialog
@@ -33,7 +34,7 @@ class AdminUploadFunctionImageFragment : Fragment() {
         ActivityResultContracts.GetContent(),
         ActivityResultCallback {
             imageUri = it
-            binding.functionImageEditText.setText(File(imageUri.path).name.toString())
+            binding.functionImageEditText.setText(File(imageUri!!.path).name.toString())
         }
     )
 
@@ -60,9 +61,7 @@ class AdminUploadFunctionImageFragment : Fragment() {
         showProgressBar()
         val information: String = binding.functionInformationEditText.text.toString()
         val functionType: String = binding.functionTypeEditText.text.toString()
-        if (information.trim().isBlank() || information.trim().isEmpty() || functionType.trim()
-                .isEmpty() || functionType.trim().isBlank()
-        ) {
+        if (validateData()) {
             hideProgressBar()
             Toast.makeText(requireContext(),
                 "Empty Fields. Cannot upload image",
@@ -81,13 +80,36 @@ class AdminUploadFunctionImageFragment : Fragment() {
                 }
             }
         }
+    }
 
+    private fun validateData(): Boolean{
+        var isError = false
+        val information: String = binding.functionInformationEditText.text.toString()
+        val functionType: String = binding.functionTypeEditText.text.toString()
+        if (information.trim().isBlank() || information.trim().isEmpty()){
+            binding.functionInformationLayout.isErrorEnabled = true
+            binding.functionInformationLayout.error = "Empty Field"
+            isError = true
+        }
+        if( functionType.trim()
+                .isEmpty() || functionType.trim().isBlank()){
+            binding.functionTypeLayout.isErrorEnabled = true
+            binding.functionTypeLayout.error = "Empty Field"
+            isError = true
+        }
+
+        if(imageUri == null){
+            binding.functionImageLayout.isErrorEnabled = true
+            binding.functionImageLayout.error = "Empty Field"
+            isError = true
+        }
+        return isError
     }
 
     private fun uploadImage() {
         val functionType: String = binding.functionTypeEditText.text.toString()
         storageReference = FirebaseStorage.getInstance().getReference("Functions/$functionType/${getCurrentDate()}")
-        storageReference.putFile(imageUri).addOnSuccessListener {
+        storageReference.putFile(imageUri!!).addOnSuccessListener {
             hideProgressBar()
             clearData()
             Toast.makeText(requireContext(),
@@ -135,5 +157,11 @@ class AdminUploadFunctionImageFragment : Fragment() {
         binding.functionImageEditText.setText("")
         binding.functionTypeEditText.setText("")
         binding.functionInformationEditText.setText("")
+        binding.functionInformationLayout.isErrorEnabled = false
+        binding.functionInformationLayout.error = ""
+        binding.functionTypeLayout.isErrorEnabled = false
+        binding.functionTypeLayout.error = ""
+        binding.functionImageLayout.isErrorEnabled = false
+        binding.functionImageLayout.error = ""
     }
 }
