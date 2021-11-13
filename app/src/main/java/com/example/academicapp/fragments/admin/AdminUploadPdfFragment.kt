@@ -19,12 +19,14 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadPdfFragmentBinding
+import com.google.firebase.storage.StorageReference
 import java.io.File
 
 class AdminUploadPdfFragment: Fragment() {
     private lateinit var binding: AdminUploadPdfFragmentBinding
     private lateinit var pdfUri: Uri
     private lateinit var dialog: Dialog
+    private lateinit var storageReference: StorageReference
 
     /*
     1st method of setting action after selecting pdf
@@ -77,6 +79,7 @@ class AdminUploadPdfFragment: Fragment() {
             Toast.makeText(requireContext(), "Some fields are empty", Toast.LENGTH_SHORT).show()
         }else {
             if(validateData()){
+                showProgressBar()
 
             }
         }
