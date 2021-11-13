@@ -2,6 +2,7 @@ package com.example.academicapp.fragments.admin
 
 import android.app.Activity.RESULT_OK
 import android.app.Application
+import android.app.Dialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -22,6 +23,7 @@ import java.io.File
 class AdminUploadPdfFragment: Fragment() {
     private lateinit var binding: AdminUploadPdfFragmentBinding
     private lateinit var pdfUri: Uri
+    private lateinit var dialog: Dialog
 
     /*
     1st method of setting action after selecting pdf
