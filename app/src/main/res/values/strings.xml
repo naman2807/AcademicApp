@@ -35,4 +35,24 @@
         <item>Maths</item>
         <item>English</item>
     </string-array>
+    <string-array name="qualifications">
+        <item>B.Tech</item>
+        <item>M.Tech</item>
+        <item>BCA</item>
+        <item>MCA</item>
+        <item>B.Sc</item>
+        <item>M.Sc</item>
+        <item>BE</item>
+        <item>Phd</item>
+    </string-array>
+    <string-array name="domains">
+        <item>Computer Science</item>
+        <item>Electrical</item>
+        <item>Electronics</item>
+        <item>Mechanical</item>
+        <item>Maths</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
+        <item>English</item>
+    </string-array>
 </resources>
