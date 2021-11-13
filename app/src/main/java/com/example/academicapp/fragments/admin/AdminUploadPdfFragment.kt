@@ -62,6 +62,14 @@ class AdminUploadPdfFragment: Fragment() {
         binding.subjectPdfEditText.setOnClickListener {
             selectPdf()
         }
+
+        binding.uploadPdfButton.setOnClickListener {
+            uploadPdf()
+        }
+    }
+
+    private fun uploadPdf() {
+
     }
 
     override fun onResume() {
