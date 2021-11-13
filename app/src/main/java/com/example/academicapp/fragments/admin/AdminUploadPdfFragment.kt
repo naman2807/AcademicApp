@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadPdfFragmentBinding
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
@@ -75,13 +76,26 @@ class AdminUploadPdfFragment: Fragment() {
     }
 
     private fun uploadPdf() {
-        if(validateData()){
+        if(!validateData()){
             Toast.makeText(requireContext(), "Some fields are empty", Toast.LENGTH_SHORT).show()
         }else {
             if(validateData()){
                 showProgressBar()
-
+                val subject = binding.subjectTypeEditText.text.toString()
+                val pdf = binding.subjectPdfEditText.text.toString()
+                storageReference = FirebaseStorage.getInstance().getReference("pdf/$subject/$pdf")
+                uploadToStorage()
             }
+        }
+    }
+
+    private fun uploadToStorage(){
+        storageReference.putFile(pdfUri).addOnSuccessListener {
+            hideProgressBar()
+            Toast.makeText(requireContext(), "Pdf uploaded successfully", Toast.LENGTH_SHORT).show()
+            clearData()
+        }.addOnFailureListener {
+            Toast.makeText(requireContext(), "Uploading Failed", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -131,6 +145,15 @@ class AdminUploadPdfFragment: Fragment() {
 
     private fun hideProgressBar(){
         dialog.dismiss()
+    }
+
+    private fun clearData(){
+        binding.subjectPdfEditText.setText("")
+        binding.subjectTypeEditText.setText("")
+        binding.subjectPdfLayout.isErrorEnabled = false
+        binding.subjectPdfLayout.error = ""
+        binding.subjectTypeLayout.isErrorEnabled = false
+        binding.subjectTypeLayout.error = ""
     }
 
 }
