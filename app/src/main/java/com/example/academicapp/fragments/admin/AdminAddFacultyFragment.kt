@@ -1,14 +1,38 @@
 package com.example.academicapp.fragments.admin
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminAddFacultyFragmentBinding
+import java.io.File
 
 class AdminAddFacultyFragment: Fragment() {
     private lateinit var binding: AdminAddFacultyFragmentBinding
+    private var tenthMarksheetUri: Uri? = null
+    private var twelthMarksheetUri: Uri? = null
+
+    val getTenthMarksheetUri = registerForActivityResult(
+        ActivityResultContracts.GetContent(),
+        ActivityResultCallback {
+            tenthMarksheetUri = it
+            binding.faculty10MarksheetEditText.setText(File(tenthMarksheetUri!!.path).name.toString())
+        }
+    )
+
+    val getTwelthMarksheetUri = registerForActivityResult(
+        ActivityResultContracts.GetContent(),
+        ActivityResultCallback {
+            twelthMarksheetUri = it
+            binding.faculty12MarksheetEditText.setText(File(twelthMarksheetUri!!.path).name.toString())
+        }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,5 +45,88 @@ class AdminAddFacultyFragment: Fragment() {
             false
         )
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.faculty10MarksheetEditText.setOnClickListener {
+            selectTenthMarksheetPdf()
+        }
+
+        binding.faculty12MarksheetEditText.setOnClickListener {
+            selectTwelthMarksheetPdf()
+        }
+
+        binding.uploadFacultyButton.setOnClickListener {
+            isAnyFieldEmpty()
+        }
+    }
+
+    private fun selectTenthMarksheetPdf(){
+        getTenthMarksheetUri.launch("application/pdf")
+    }
+
+    private fun selectTwelthMarksheetPdf(){
+        getTwelthMarksheetUri.launch("application/pdf")
+    }
+
+    private fun isAnyFieldEmpty(): Boolean{
+        var isEmpty: Boolean = false
+        val name = binding.facultyNameEditText.text.toString()
+        val address = binding.facultyAddressEditText.text.toString()
+        val contact = binding.facultyContactEditText.text.toString()
+        val qualification = binding.facultyQualificationsEditText.text.toString()
+        val domain = binding.facultyDomainEditText.text.toString()
+        val twelthMarksheet = binding.faculty12MarksheetEditText.text.toString()
+        val tenthMarksheet = binding.faculty10MarksheetEditText.text.toString()
+        if(name.trim().isBlank() || name.trim().isEmpty()){
+            binding.facultyNameLayout.isErrorEnabled = true
+            binding.facultyNameLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(address.trim().isEmpty() || address.trim().isBlank()){
+            binding.facultyAddressLayout.isErrorEnabled = true
+            binding.facultyAddressLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(contact.trim().isBlank() || contact.trim().isEmpty()){
+            binding.facultyContactLayout.isErrorEnabled = true
+            binding.facultyContactLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(qualification.trim().isEmpty() || qualification.trim().isBlank()){
+            binding.facultyQualificationsLayout.isErrorEnabled = true
+            binding.facultyQualificationsLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(domain.trim().isBlank() || domain.trim().isEmpty()){
+            binding.facultyDomainLayout.isErrorEnabled = true
+            binding.facultyDomainLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(twelthMarksheet.trim().isEmpty() || twelthMarksheet.trim().isBlank()){
+            binding.faculty12MarksheetLayout.isErrorEnabled = true
+            binding.faculty12MarksheetLayout.error = "Empty Field"
+            isEmpty = true
+        }
+
+        if(tenthMarksheet.trim().isBlank() || tenthMarksheet.trim().isEmpty()){
+            binding.faculty10MarksheetLayout.isErrorEnabled = true
+            binding.faculty10MarksheetLayout.error = "Empty Field"
+            isEmpty = true
+        }
+        return isEmpty
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val qualificationAdapter = ArrayAdapter(requireContext(), R.layout.function_text, resources.getStringArray(R.array.qualifications))
+        val domainAdapter = ArrayAdapter(requireContext(), R.layout.function_text, resources.getStringArray(R.array.domains))
+        binding.facultyQualificationsEditText.setAdapter(qualificationAdapter)
+        binding.facultyDomainEditText.setAdapter(domainAdapter)
     }
 }

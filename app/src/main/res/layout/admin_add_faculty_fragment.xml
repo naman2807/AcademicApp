@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLines="1"
-                android:inputType="text"/>
+                android:inputType="number"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -110,12 +110,11 @@
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusBottomEnd="10dp">
 
-            <MultiAutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/faculty_qualifications_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLines="1"
-                android:inputType="none"
                 android:editable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -136,12 +135,11 @@
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusBottomEnd="10dp">
 
-            <MultiAutoCompleteTextView
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/faculty_domain_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:maxLines="1"
-                android:inputType="none"
                 android:editable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 

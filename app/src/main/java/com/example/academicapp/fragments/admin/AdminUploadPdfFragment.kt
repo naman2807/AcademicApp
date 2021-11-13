@@ -151,7 +151,7 @@ class AdminUploadPdfFragment: Fragment() {
     private fun showProgressBar(){
         dialog = Dialog(requireActivity())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.progress_bar)
+        dialog.setContentView(R.layout.progress_bar_pdf)
         dialog.setCanceledOnTouchOutside(false)
         dialog.show()
     }

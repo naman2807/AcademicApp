@@ -17,6 +17,7 @@
     <string name="upload_12th_marksheet">Upload 12th Marksheet</string>
     <string name="upload_10th_marksheet">Upload 10th Marksheet</string>
     <string name="add_faculty">Add Faculty</string>
+    <string name="please_wait_pdf_is_being_uploading">Please wait, pdf is being uploading!</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
@@ -33,6 +34,26 @@
         <item>Object Oriented Programming</item>
         <item>Microprocessor</item>
         <item>Maths</item>
+        <item>English</item>
+    </string-array>
+    <string-array name="qualifications">
+        <item>B.Tech</item>
+        <item>M.Tech</item>
+        <item>BCA</item>
+        <item>MCA</item>
+        <item>B.Sc</item>
+        <item>M.Sc</item>
+        <item>BE</item>
+        <item>Phd</item>
+    </string-array>
+    <string-array name="domains">
+        <item>Computer Science</item>
+        <item>Electrical</item>
+        <item>Electronics</item>
+        <item>Mechanical</item>
+        <item>Maths</item>
+        <item>Physics</item>
+        <item>Chemistry</item>
         <item>English</item>
     </string-array>
 </resources>
