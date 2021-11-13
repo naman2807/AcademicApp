@@ -12,10 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
-import com.example.academicapp.fragments.admin.AdminHomeFragment
-import com.example.academicapp.fragments.admin.AdminUploadFunctionImageFragment
-import com.example.academicapp.fragments.admin.AdminUploadNoticeFragment
-import com.example.academicapp.fragments.admin.AdminUploadPdfFragment
+import com.example.academicapp.fragments.admin.*
 import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -41,7 +38,7 @@ class AdminActivity: AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.upload_pdf -> selectedFragment = AdminUploadPdfFragment()
-                R.id.gg -> Toast.makeText(this, "Navigation 2", Toast.LENGTH_SHORT).show()
+                R.id.add_faculty -> selectedFragment = AdminAddFacultyFragment()
                 R.id.setting2 -> Toast.makeText(this, "Navigation 3", Toast.LENGTH_SHORT).show()
             }
 
@@ -63,8 +60,6 @@ class AdminActivity: AppCompatActivity() {
             viewModel.selectFragment(selectedFragment)
             supportFragmentManager.beginTransaction().replace(R.id.nav_host_fragment, selectedFragment).commit()
             return@setOnItemSelectedListener true
-
-
         }
     }
 

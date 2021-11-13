@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AcademicApp">
         <activity android:name=".activities.MainActivity"/>
-        <activity android:name=".activities.AdminActivity"/>
+        <activity android:name=".activities.AdminActivity"
+            android:windowSoftInputMode="adjustNothing"/>
         <activity android:name=".activities.FacultyActivity"/>
         <activity android:name=".activities.StudentActivity"/>
         <activity
