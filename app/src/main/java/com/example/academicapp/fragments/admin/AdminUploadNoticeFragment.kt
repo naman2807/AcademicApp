@@ -10,17 +10,21 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.academicapp.databinding.AdminUploadNoticeFragmentBinding
+import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.firebase.storage.FirebaseStorage
 
 class AdminUploadNoticeFragment: Fragment() {
     private lateinit var binding: AdminUploadNoticeFragmentBinding
-    private lateinit var imageUri: Uri
+    private var imageUri: Uri? = null
+    private val viewModel: AdminViewModel by activityViewModels()
 
     val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent(),
         ActivityResultCallback {
             imageUri = it
+            viewModel.setNoticeImageUri(it)
             binding.notice.setImageURI(imageUri)
         }
     )
@@ -35,6 +39,9 @@ class AdminUploadNoticeFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        imageUri = viewModel.noticeImageUri.value
+        binding.notice.setImageURI(imageUri)
+
         binding.notice.setOnClickListener {
             selectImage()
         }
@@ -52,7 +59,7 @@ class AdminUploadNoticeFragment: Fragment() {
         val fileName: String = binding.noticeDescriptionEditText.text.toString()
         val storageReference = FirebaseStorage.getInstance().getReference("notices/$fileName")
 
-        storageReference.putFile(imageUri)
+        storageReference.putFile(imageUri!!)
             .addOnSuccessListener {
                 binding.notice.setImageURI(null)
                 clearData()
@@ -70,6 +77,7 @@ class AdminUploadNoticeFragment: Fragment() {
 
     private fun clearData(){
         binding.noticeDescriptionEditText.setText("")
+        viewModel.setNoticeImageUri(null)
     }
 
 }

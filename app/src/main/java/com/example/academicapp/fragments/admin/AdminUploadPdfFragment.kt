@@ -18,8 +18,10 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadPdfFragmentBinding
+import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
@@ -29,6 +31,7 @@ class AdminUploadPdfFragment: Fragment() {
     private var pdfUri: Uri? = null
     private lateinit var dialog: Dialog
     private lateinit var storageReference: StorageReference
+    private val viewModel: AdminViewModel by activityViewModels()
 
     /*
     1st method of setting action after selecting pdf
@@ -53,6 +56,7 @@ class AdminUploadPdfFragment: Fragment() {
         ActivityResultContracts.GetContent(),
         ActivityResultCallback {
             pdfUri = it
+            viewModel.setPdfUri(it)
             binding.subjectPdfEditText.setText(File(pdfUri!!.path).name.toString())
         }
     )
@@ -67,6 +71,8 @@ class AdminUploadPdfFragment: Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        pdfUri = viewModel.pdfUri.value
+
         binding.subjectPdfEditText.setOnClickListener {
             selectPdf()
         }
@@ -100,7 +106,6 @@ class AdminUploadPdfFragment: Fragment() {
 
     private fun validateData(): Boolean {
         val subject = binding.subjectTypeEditText.text.toString()
-        val pdf = binding.subjectPdfEditText.text.toString()
         if (subject.trim().isBlank() || subject.trim().isEmpty()) {
             binding.subjectTypeLayout.isErrorEnabled = true
             binding.subjectTypeLayout.error = "Empty Field"

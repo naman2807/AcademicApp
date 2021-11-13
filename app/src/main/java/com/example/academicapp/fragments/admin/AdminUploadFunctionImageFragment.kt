@@ -13,8 +13,10 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadFunctionImageFragmentBinding
+import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -29,11 +31,13 @@ class AdminUploadFunctionImageFragment : Fragment() {
     private lateinit var databaseReference: DatabaseReference
     private lateinit var storageReference: StorageReference
     private lateinit var dialog: Dialog
+    private val viewModel: AdminViewModel by activityViewModels()
 
     val getImage = registerForActivityResult(
         ActivityResultContracts.GetContent(),
         ActivityResultCallback {
             imageUri = it
+            viewModel.setFunctionImageUri(it)
             binding.functionImageEditText.setText(File(imageUri!!.path).name.toString())
         }
     )
@@ -48,6 +52,8 @@ class AdminUploadFunctionImageFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        imageUri = viewModel.functionImageUri.value
+
         binding.functionImageEditText.setOnClickListener {
             selectImage()
         }
