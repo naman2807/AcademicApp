@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
@@ -116,4 +117,17 @@ class AdminUploadPdfFragment: Fragment() {
          */
         getPdf.launch("application/pdf")
     }
+
+    private fun showProgressBar(){
+        dialog = Dialog(requireActivity())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.progress_bar)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.show()
+    }
+
+    private fun hideProgressBar(){
+        dialog.dismiss()
+    }
+
 }
