@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadPdfFragmentBinding
@@ -69,7 +70,28 @@ class AdminUploadPdfFragment: Fragment() {
     }
 
     private fun uploadPdf() {
+        if(validateData()){
+            Toast.makeText(requireContext(), "Some fields are empty", Toast.LENGTH_SHORT).show()
+        }else {
+            if(validateData()){
 
+            }
+        }
+    }
+
+    private fun validateData(): Boolean{
+        val subject = binding.subjectTypeEditText.text.toString()
+        val pdf = binding.subjectPdfEditText.text.toString()
+        if(subject.trim().isBlank() || subject.trim().isEmpty()){
+            binding.subjectTypeLayout.isErrorEnabled = true
+            binding.subjectTypeLayout.error = "Empty Field"
+            if(pdf.trim().isEmpty() || pdf.trim().isBlank()){
+                binding.subjectPdfLayout.isErrorEnabled = true
+                binding.subjectPdfLayout.error = "Empty Field"
+            }
+            return false
+        }
+        return true
     }
 
     override fun onResume() {
