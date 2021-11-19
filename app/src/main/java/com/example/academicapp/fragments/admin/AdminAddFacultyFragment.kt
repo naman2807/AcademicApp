@@ -17,6 +17,7 @@ class AdminAddFacultyFragment: Fragment() {
     private lateinit var binding: AdminAddFacultyFragmentBinding
     private var tenthMarksheetUri: Uri? = null
     private var twelthMarksheetUri: Uri? = null
+    private var profileImageUri: Uri? = null
 
     val getTenthMarksheetUri = registerForActivityResult(
         ActivityResultContracts.GetContent(),
@@ -31,6 +32,14 @@ class AdminAddFacultyFragment: Fragment() {
         ActivityResultCallback {
             twelthMarksheetUri = it
             binding.faculty12MarksheetEditText.setText(File(twelthMarksheetUri!!.path).name.toString())
+        }
+    )
+
+    val getProfileImageUri = registerForActivityResult(
+        ActivityResultContracts.GetContent(),
+        ActivityResultCallback {
+            profileImageUri = it
+            binding.facultyProfileImage.setImageURI(profileImageUri)
         }
     )
 
@@ -120,6 +129,10 @@ class AdminAddFacultyFragment: Fragment() {
             isEmpty = true
         }
         return isEmpty
+    }
+
+    private fun selectProfileImage(){
+        getProfileImageUri.launch("image/*")
     }
 
     override fun onResume() {
