@@ -68,6 +68,10 @@ class AdminAddFacultyFragment: Fragment() {
         binding.uploadFacultyButton.setOnClickListener {
             isAnyFieldEmpty()
         }
+
+        binding.facultyProfileImage.setOnClickListener {
+            selectProfileImage()
+        }
     }
 
     private fun selectTenthMarksheetPdf(){
