@@ -11,14 +11,16 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminAddFacultyFragmentBinding
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.File
 
 class AdminAddFacultyFragment: Fragment() {
     private lateinit var binding: AdminAddFacultyFragmentBinding
-    private lateinit var firebaseStorage: FirebaseStorage
-    private lateinit var firebaseDatabase: FirebaseDatabase
+    private lateinit var firebaseStorage: StorageReference
+    private lateinit var firebaseDatabase: DatabaseReference
     private var tenthMarksheetUri: Uri? = null
     private var twelthMarksheetUri: Uri? = null
     private var profileImageUri: Uri? = null
@@ -91,12 +93,32 @@ class AdminAddFacultyFragment: Fragment() {
     }
 
     private fun uploadProfile(){
+        val firstName = binding.facultyFirstNameEditText.text.toString()
+        val lastName = binding.facultyLastNameEditText.text.toString()
+        val email = generateEmailId(firstName = firstName, lastName = lastName)
+        firebaseDatabase = FirebaseDatabase.getInstance().getReference("Faculties/$email")
+        firebaseStorage = FirebaseStorage.getInstance().getReference("Faculties/$email")
+    }
 
+    private fun generateEmailId(firstName: String?, lastName: String?): String{
+        return if (lastName != null){
+            "${firstName!!.lowercase()}.${lastName.lowercase()}@gla.ac.in"
+        }else {
+            "${firstName!!.lowercase()}@gla.ac.in"
+        }
+    }
+
+    private fun generatePassword(): String{
+        val password = StringBuilder()
+        for (i in 0..4){
+            password.append((0..9).random().toString())
+        }
+        return password.toString()
     }
 
     private fun isAnyFieldEmpty(): Boolean{
         var isEmpty: Boolean = false
-        val name = binding.facultyNameEditText.text.toString()
+        val name = binding.facultyFirstNameEditText.text.toString()
         val address = binding.facultyAddressEditText.text.toString()
         val contact = binding.facultyContactEditText.text.toString()
         val qualification = binding.facultyQualificationsEditText.text.toString()
@@ -104,8 +126,8 @@ class AdminAddFacultyFragment: Fragment() {
         val twelthMarksheet = binding.faculty12MarksheetEditText.text.toString()
         val tenthMarksheet = binding.faculty10MarksheetEditText.text.toString()
         if(name.trim().isBlank() || name.trim().isEmpty()){
-            binding.facultyNameLayout.isErrorEnabled = true
-            binding.facultyNameLayout.error = "Empty Field"
+            binding.facultyFirstNameLayout.isErrorEnabled = true
+            binding.facultyFirstNameLayout.error = "Empty Field"
             isEmpty = true
         }
 
