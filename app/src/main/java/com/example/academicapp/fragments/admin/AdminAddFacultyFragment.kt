@@ -82,6 +82,14 @@ class AdminAddFacultyFragment: Fragment() {
         getTwelthMarksheetUri.launch("application/pdf")
     }
 
+    private fun selectProfileImage(){
+        getProfileImageUri.launch("image/*")
+    }
+
+    private fun uploadProfile(){
+
+    }
+
     private fun isAnyFieldEmpty(): Boolean{
         var isEmpty: Boolean = false
         val name = binding.facultyNameEditText.text.toString()
@@ -132,11 +140,11 @@ class AdminAddFacultyFragment: Fragment() {
             binding.faculty10MarksheetLayout.error = "Empty Field"
             isEmpty = true
         }
-        return isEmpty
-    }
 
-    private fun selectProfileImage(){
-        getProfileImageUri.launch("image/*")
+        if(profileImageUri == null){
+            isEmpty = true
+        }
+        return isEmpty
     }
 
     override fun onResume() {
