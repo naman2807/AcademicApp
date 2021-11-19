@@ -9,7 +9,7 @@
         android:title="@string/add_faculty"
         android:icon="@drawable/ic_add_faculty"/>
     <item
-        android:id="@+id/setting2"
-        android:title="Home"
-        android:icon="@drawable/ic_baseline_user"/>
+        android:id="@+id/update_faculty"
+        android:title="@string/update_faculty"
+        android:icon="@drawable/ic_baseline_update_24"/>
 </menu>

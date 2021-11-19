@@ -20,6 +20,7 @@
     <string name="please_wait_pdf_is_being_uploading">Please wait, pdf is being uploading!</string>
     <string name="faculty_last_name">Faculty Last Name</string>
     <string name="faculty_first_name">Faculty First Name</string>
+    <string name="update_faculty">Update Faculty</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
