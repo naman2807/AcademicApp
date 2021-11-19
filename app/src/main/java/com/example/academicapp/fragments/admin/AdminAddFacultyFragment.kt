@@ -11,10 +11,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminAddFacultyFragmentBinding
+import com.google.firebase.storage.FirebaseStorage
 import java.io.File
 
 class AdminAddFacultyFragment: Fragment() {
     private lateinit var binding: AdminAddFacultyFragmentBinding
+    private lateinit var firebaseStorage: FirebaseStorage
     private var tenthMarksheetUri: Uri? = null
     private var twelthMarksheetUri: Uri? = null
     private var profileImageUri: Uri? = null
