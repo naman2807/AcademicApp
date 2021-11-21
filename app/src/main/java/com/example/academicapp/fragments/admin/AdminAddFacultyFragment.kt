@@ -3,6 +3,7 @@ package com.example.academicapp.fragments.admin
 import android.app.Dialog
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class AdminAddFacultyFragment : Fragment() {
     private var twelthMarksheetUri: Uri? = null
     private var profileImageUri: Uri? = null
     private lateinit var dialog: Dialog
+    private lateinit var downloadImageUri: String
 
     val getTenthMarksheetUri = registerForActivityResult(
         ActivityResultContracts.GetContent(),
@@ -80,7 +82,7 @@ class AdminAddFacultyFragment : Fragment() {
 
         binding.uploadFacultyButton.setOnClickListener {
             if (!isAnyFieldEmpty()) {
-                uploadProfile()
+                uploadProfileImage()
             } else {
                 Toast.makeText(requireContext(), "Some fields are empty!!", Toast.LENGTH_SHORT)
                     .show()
@@ -105,13 +107,14 @@ class AdminAddFacultyFragment : Fragment() {
     }
 
     private fun uploadProfile() {
-        showProgressBar()
-        val firstName = binding.facultyFirstNameEditText.text.toString()
-        val lastName = binding.facultyLastNameEditText.text.toString()
+        val contact = binding.facultyContactEditText.text.toString()
         firebaseDatabase =
-            FirebaseDatabase.getInstance().getReference("Faculties/$firstName/$lastName")
+            FirebaseDatabase.getInstance().getReference("Faculties/$contact")
         firebaseDatabase.setValue(getFacultyInstance()).addOnSuccessListener {
-            uploadTwelthMarksheet()
+            hideProgressBar()
+            clearData()
+            Toast.makeText(requireContext(), "Faculty Added Successfully", Toast.LENGTH_SHORT)
+                .show()
         }.addOnFailureListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Profile uploading error", Toast.LENGTH_SHORT).show()
@@ -119,10 +122,9 @@ class AdminAddFacultyFragment : Fragment() {
     }
 
     private fun uploadTwelthMarksheet() {
-        val firstName = binding.facultyFirstNameEditText.text.toString()
-        val lastName = binding.facultyLastNameEditText.text.toString()
+        val contact = binding.facultyContactEditText.text.toString()
         firebaseStorageFor12 = FirebaseStorage.getInstance()
-            .getReference("Faculties/$firstName/$lastName/twelth_marksheet")
+            .getReference("Faculties/$contact/twelth_marksheet")
         firebaseStorageFor12.putFile(twelthMarksheetUri!!).addOnSuccessListener {
             uploadTenthMarksheet()
         }.addOnFailureListener {
@@ -133,12 +135,11 @@ class AdminAddFacultyFragment : Fragment() {
     }
 
     private fun uploadTenthMarksheet() {
-        val firstName = binding.facultyFirstNameEditText.text.toString()
-        val lastName = binding.facultyLastNameEditText.text.toString()
+        val contact = binding.facultyContactEditText.text.toString()
         firebaseStorageFor10 = FirebaseStorage.getInstance()
-            .getReference("Faculties/$firstName/$lastName/tenth_marksheet")
+            .getReference("Faculties/$contact/tenth_marksheet")
         firebaseStorageFor10.putFile(tenthMarksheetUri!!).addOnSuccessListener {
-            uploadProfileImage()
+            uploadProfile()
         }.addOnFailureListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Tenth marksheet uploading error", Toast.LENGTH_SHORT)
@@ -147,15 +148,16 @@ class AdminAddFacultyFragment : Fragment() {
     }
 
     private fun uploadProfileImage() {
-        val firstName = binding.facultyFirstNameEditText.text.toString()
-        val lastName = binding.facultyLastNameEditText.text.toString()
+        showProgressBar()
+        val contact = binding.facultyContactEditText.text.toString()
         firebaseStorageForProfile =
-            FirebaseStorage.getInstance().getReference("Faculties/$firstName/$lastName/profile_pic")
+            FirebaseStorage.getInstance().getReference("Faculties/$contact/profile_pic")
         firebaseStorageForProfile.putFile(profileImageUri!!).addOnSuccessListener {
-            hideProgressBar()
-            clearData()
-            Toast.makeText(requireContext(), "Faculty Added Successfully", Toast.LENGTH_SHORT)
-                .show()
+            val result = it.storage.downloadUrl
+            result.addOnSuccessListener {
+                downloadImageUri = it.toString()
+                uploadTwelthMarksheet()
+            }
         }.addOnFailureListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Twelth marksheet uploading error", Toast.LENGTH_SHORT)
@@ -193,8 +195,9 @@ class AdminAddFacultyFragment : Fragment() {
             generatePassword(),
             generateEmailId(
                 binding.facultyFirstNameEditText.text.toString(),
-                binding.facultyLastNameEditText.text.toString(),
-            ))
+                binding.facultyLastNameEditText.text.toString()
+            ),
+            downloadImageUri)
     }
 
     private fun generatePassword(): String {

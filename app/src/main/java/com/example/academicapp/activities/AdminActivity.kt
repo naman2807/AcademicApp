@@ -43,7 +43,7 @@ class AdminActivity: AppCompatActivity() {
             when (it.itemId) {
                 R.id.upload_pdf -> selectedFragment = AdminUploadPdfFragment()
                 R.id.add_faculty -> selectedFragment = AdminAddFacultyFragment()
-                R.id.update_faculty -> Toast.makeText(this, "Navigation 3", Toast.LENGTH_SHORT).show()
+                R.id.update_faculty -> selectedFragment = AdminUpdateFacultyFragment()
                 R.id.logout -> logout()
             }
 
