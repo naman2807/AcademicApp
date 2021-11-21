@@ -21,6 +21,7 @@
     <string name="faculty_last_name">Faculty Last Name</string>
     <string name="faculty_first_name">Faculty First Name</string>
     <string name="update_faculty">Update Faculty</string>
+    <string name="logout">Logout</string>
     <string-array name="functions">
         <item>Republic Day</item>
         <item>Independence Day</item>
