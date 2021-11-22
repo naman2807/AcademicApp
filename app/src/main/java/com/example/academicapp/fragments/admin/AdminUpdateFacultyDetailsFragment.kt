@@ -27,6 +27,17 @@ class AdminUpdateFacultyDetailsFragment(private val faculty: Faculty): Fragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.uploadFacultyButton.setText(getString(R.string.update_faculty))
         setValues(faculty)
+        binding.uploadFacultyButton.setOnClickListener {
+            updateFaculty(getFaculty())
+        }
+    }
+
+    private fun updateFaculty(faculty: Faculty) {
+        TODO("Not yet implemented")
+    }
+
+    private fun getFaculty(): Faculty {
+        TODO("Not yet implemented")
     }
 
     private fun setValues(faculty: Faculty) {
