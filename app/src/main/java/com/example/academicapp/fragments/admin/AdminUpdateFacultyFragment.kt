@@ -20,9 +20,6 @@ import com.google.firebase.database.*
 class AdminUpdateFacultyFragment: Fragment() {
     private lateinit var binding: AdminUpdateFacultyFragmentBinding
     private lateinit var recyclerView: RecyclerView
-    private lateinit var databaseReference: DatabaseReference
-    private lateinit var faculty: Faculty
-    private lateinit var dialog: Dialog
     private lateinit var adapter: AdminUpdateFacultyRecyclerAdapter
 
     override fun onCreateView(
@@ -47,41 +44,8 @@ class AdminUpdateFacultyFragment: Fragment() {
             activity?.supportFragmentManager?.beginTransaction()?.
             replace(R.id.nav_host_fragment, AdminUpdateFacultyDetailsFragment(it))?.commit()
         }
+
         recyclerView.adapter = adapter
-    }
-
-    private fun getFaculties(): MutableList<Faculty>{
-        val facultiesList: MutableList<Faculty>  = arrayListOf()
-        showProgressBar()
-        databaseReference.addValueEventListener(object : ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for (dataSnapshot: DataSnapshot in snapshot.children){
-                    Log.e("faculty", dataSnapshot.child("firstName").getValue().toString())
-                    faculty = dataSnapshot.getValue(Faculty::class.java)!!
-                    Log.e("faculty", faculty.address.toString())
-                    facultiesList.add(faculty)
-                }
-
-            }
-            override fun onCancelled(error: DatabaseError) {
-                hideProgressBar()
-            }
-        })
-        Log.e("Faculty", facultiesList.size.toString())
-        hideProgressBar()
-        return facultiesList
-    }
-
-    private fun showProgressBar(){
-        dialog = Dialog(requireActivity())
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.progress_bar)
-        dialog.setCanceledOnTouchOutside(false)
-        dialog.show()
-    }
-
-    private fun hideProgressBar(){
-        dialog.dismiss()
     }
 
     override fun onStart() {
@@ -93,4 +57,28 @@ class AdminUpdateFacultyFragment: Fragment() {
         super.onStop()
         adapter.stopListening()
     }
+
+//
+//    private fun getFaculties(): MutableList<Faculty>{
+//        val facultiesList: MutableList<Faculty>  = arrayListOf()
+//        showProgressBar()
+//        databaseReference.addValueEventListener(object : ValueEventListener{
+//            override fun onDataChange(snapshot: DataSnapshot) {
+//                for (dataSnapshot: DataSnapshot in snapshot.children){
+//                    Log.e("faculty", dataSnapshot.child("firstName").getValue().toString())
+//                    faculty = dataSnapshot.getValue(Faculty::class.java)!!
+//                    Log.e("faculty", faculty.address.toString())
+//                    facultiesList.add(faculty)
+//                }
+//
+//            }
+//            override fun onCancelled(error: DatabaseError) {
+//                hideProgressBar()
+//            }
+//        })
+//        Log.e("Faculty", facultiesList.size.toString())
+//        hideProgressBar()
+//        return facultiesList
+//    }
+
 }
