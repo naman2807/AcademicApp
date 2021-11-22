@@ -33,6 +33,8 @@ class AdminAddFacultyFragment : Fragment() {
     private var profileImageUri: Uri? = null
     private lateinit var dialog: Dialog
     private lateinit var downloadImageUri: String
+    private lateinit var download12MarksheetUri: String
+    private var download10MarksheetUri: String? = ""
 
     val getTenthMarksheetUri = registerForActivityResult(
         ActivityResultContracts.GetContent(),
@@ -126,7 +128,11 @@ class AdminAddFacultyFragment : Fragment() {
         firebaseStorageFor12 = FirebaseStorage.getInstance()
             .getReference("Faculties/$contact/twelth_marksheet")
         firebaseStorageFor12.putFile(twelthMarksheetUri!!).addOnSuccessListener {
-            uploadTenthMarksheet()
+            val result = it.storage.downloadUrl
+            result.addOnSuccessListener {
+                download12MarksheetUri = it.toString()
+                uploadTenthMarksheet()
+            }
         }.addOnFailureListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Twelth marksheet uploading error", Toast.LENGTH_SHORT)
@@ -139,7 +145,11 @@ class AdminAddFacultyFragment : Fragment() {
         firebaseStorageFor10 = FirebaseStorage.getInstance()
             .getReference("Faculties/$contact/tenth_marksheet")
         firebaseStorageFor10.putFile(tenthMarksheetUri!!).addOnSuccessListener {
-            uploadProfile()
+            val result = it.storage.downloadUrl
+            result.addOnSuccessListener {
+                download10MarksheetUri = it.toString()
+                uploadProfile()
+            }
         }.addOnFailureListener {
             hideProgressBar()
             Toast.makeText(requireContext(), "Tenth marksheet uploading error", Toast.LENGTH_SHORT)
@@ -197,7 +207,9 @@ class AdminAddFacultyFragment : Fragment() {
                 binding.facultyFirstNameEditText.text.toString(),
                 binding.facultyLastNameEditText.text.toString()
             ),
-            downloadImageUri)
+            downloadImageUri,
+            download12MarksheetUri,
+            download10MarksheetUri)
     }
 
     private fun generatePassword(): String {

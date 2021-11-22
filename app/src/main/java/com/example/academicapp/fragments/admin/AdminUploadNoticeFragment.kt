@@ -11,6 +11,7 @@ import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminUploadNoticeFragmentBinding
 import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.firebase.storage.FirebaseStorage
@@ -47,7 +48,11 @@ class AdminUploadNoticeFragment: Fragment() {
         }
 
         binding.uploadNoticeButton.setOnClickListener {
-            uploadNotice()
+            if (!isEmpty()){
+                uploadNotice()
+            }else {
+                Toast.makeText(requireContext(), "Some fields are empty", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -61,7 +66,7 @@ class AdminUploadNoticeFragment: Fragment() {
 
         storageReference.putFile(imageUri!!)
             .addOnSuccessListener {
-                binding.notice.setImageURI(null)
+                binding.notice.setImageResource(R.drawable.ic_add_image)
                 clearData()
                 Toast.makeText(requireContext(), "$fileName notice Uploaded Successfully", Toast.LENGTH_SHORT).show()
                 if(progressDialog.isShowing) progressDialog.dismiss()
@@ -69,6 +74,19 @@ class AdminUploadNoticeFragment: Fragment() {
                 if(progressDialog.isShowing) progressDialog.dismiss()
                 Toast.makeText(requireContext(), "Some Error Occurred", Toast.LENGTH_SHORT).show()
             }
+    }
+
+    private fun isEmpty(): Boolean{
+        var isEmpty = false
+        if (binding.noticeDescriptionEditText.text.toString().trim().isEmpty() || binding.noticeDescriptionEditText.text.toString().trim().isBlank()){
+            isEmpty = true
+        }
+
+        if (imageUri == null){
+            isEmpty = true
+        }
+
+        return isEmpty
     }
 
     private fun selectImage() {
