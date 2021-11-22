@@ -43,7 +43,10 @@ class AdminUpdateFacultyFragment: Fragment() {
             .setQuery(FirebaseDatabase.getInstance().getReference("Faculties"), Faculty::class.java)
             .build()
 
-        adapter = AdminUpdateFacultyRecyclerAdapter(options = options)
+        adapter = AdminUpdateFacultyRecyclerAdapter(options = options){
+            activity?.supportFragmentManager?.beginTransaction()?.
+            replace(R.id.nav_host_fragment, AdminUpdateFacultyDetailsFragment(it))?.commit()
+        }
         recyclerView.adapter = adapter
     }
 

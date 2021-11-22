@@ -14,7 +14,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import de.hdodenhof.circleimageview.CircleImageView
 
-class AdminUpdateFacultyRecyclerAdapter(options: FirebaseRecyclerOptions<Faculty>, private val onItemClicked:(Faculty) -> Unit) : FirebaseRecyclerAdapter<Faculty, AdminUpdateFacultyRecyclerAdapter.MyViewHolder>(
+class AdminUpdateFacultyRecyclerAdapter(options: FirebaseRecyclerOptions<Faculty>, private val onItemClicked: (Faculty) -> Unit) : FirebaseRecyclerAdapter<Faculty, AdminUpdateFacultyRecyclerAdapter.MyViewHolder>(
     options) {
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
