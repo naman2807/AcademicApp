@@ -6,6 +6,9 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/error_icon.xml" value="0.26666666666666666" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/ic_notice.xml" value="0.28717948717948716" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/ic_subject.xml" value="0.2916666666666667" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/item_selected.xml" value="0.28717948717948716" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/item_unselected.xml" value="0.28717948717948716" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/drawable/tab_selector.xml" value="0.28717948717948716" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_admin.xml" value="0.1" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_faculty.xml" value="0.26222826086956524" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/activity_main.xml" value="0.2755208333333333" />
@@ -13,11 +16,12 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin.xml" value="0.26222826086956524" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_add_faculty_fragment.xml" value="0.26856884057971014" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_home_fragment.xml" value="0.2586050724637681" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_important_links_item.xml" value="0.2427536231884058" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_login.xml" value="0.1339918946301925" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_nav_header.xml" value="0.2586050724637681" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_nav_hedaer.xml" value="0.2586050724637681" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_update_faculty_fragment.xml" value="0.22192028985507245" />
-        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_update_faculty_list_item.xml" value="0.22192028985507245" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_update_faculty_list_item.xml" value="0.264" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_upload_function_image_fragment.xml" value="0.264" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_upload_notice_fragment.xml" value="0.2513586956521739" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/admin_upload_pdf_fragment.xml" value="0.2368659420289855" />
@@ -26,6 +30,8 @@
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/faculty_nav_header.xml" value="0.2586050724637681" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/fragment_options.xml" value="0.2" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/function_text.xml" value="0.2755208333333333" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/image_slider_layout.xml" value="0.2427536231884058" />
+        <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/network_error.xml" value="0.23867753623188406" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/progress_bar.xml" value="0.24094202898550723" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/progress_bar_add_faculty.xml" value="0.2586050724637681" />
         <entry key="..\:/Users/Dell/AndroidStudioProjects/AcademicApp/app/src/main/res/layout/splashscreen.xml" value="0.24320652173913043" />

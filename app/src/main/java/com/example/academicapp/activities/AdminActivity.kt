@@ -41,9 +41,18 @@ class AdminActivity: AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.upload_pdf -> selectedFragment = AdminUploadPdfFragment()
-                R.id.add_faculty -> selectedFragment = AdminAddFacultyFragment()
-                R.id.update_faculty -> selectedFragment = AdminUpdateFacultyFragment()
+                R.id.upload_pdf -> {
+                    selectedFragment = AdminUploadPdfFragment()
+                    supportActionBar?.title = "Upload Pdf"
+                }
+                R.id.add_faculty -> {
+                    selectedFragment = AdminAddFacultyFragment()
+                    supportActionBar?.title = "Add Faculty"
+                }
+                R.id.update_faculty -> {
+                    selectedFragment = AdminUpdateFacultyFragment()
+                    supportActionBar?.title = "Update Faculty"
+                }
                 R.id.logout -> logout()
             }
 
@@ -57,9 +66,18 @@ class AdminActivity: AppCompatActivity() {
         val bottomNav: BottomNavigationView = findViewById(R.id.bottom_navigation)
         bottomNav.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.home -> selectedFragment = AdminHomeFragment()
-                R.id.upload_notice -> selectedFragment = AdminUploadNoticeFragment()
-                R.id.upload_function_image -> selectedFragment = AdminUploadFunctionImageFragment()
+                R.id.home -> {
+                    selectedFragment = AdminHomeFragment()
+                    supportActionBar?.title = "Academia"
+                }
+                R.id.upload_notice -> {
+                    selectedFragment = AdminUploadNoticeFragment()
+                    supportActionBar?.title = "Upload Notice"
+                }
+                R.id.upload_function_image -> {
+                    selectedFragment = AdminUploadFunctionImageFragment()
+                    supportActionBar?.title = "Upload Function Image"
+                }
             }
 
             viewModel.selectFragment(selectedFragment)

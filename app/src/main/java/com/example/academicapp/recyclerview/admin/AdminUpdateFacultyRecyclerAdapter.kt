@@ -1,6 +1,7 @@
 package com.example.academicapp.recyclerview.admin
 
 import android.annotation.SuppressLint
+import android.provider.Settings.Global.getString
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,6 +20,7 @@ class AdminUpdateFacultyRecyclerAdapter(options: FirebaseRecyclerOptions<Faculty
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view){
         val facultyName = view.findViewById<TextView>(R.id.recycler_view_name)
+        val facultyDomain = view.findViewById<TextView>(R.id.recycler_view_domain)
         val facultyImage = view.findViewById<CircleImageView>(R.id.recycler_view_profile)
     }
 
@@ -29,7 +31,8 @@ class AdminUpdateFacultyRecyclerAdapter(options: FirebaseRecyclerOptions<Faculty
 
     @SuppressLint("CheckResult")
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: Faculty) {
-        holder.facultyName.setText(model.firstName)
+        holder.facultyName.setText("${model.firstName} ${model.lastname}")
+        holder.facultyDomain.setText(model.qualification + ": "+ model.domain)
         Glide.with(holder.facultyImage.context)
             .load(model.downloadImageUri).placeholder(R.drawable.profile)
             .circleCrop()

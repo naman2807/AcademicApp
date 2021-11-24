@@ -12,18 +12,20 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import com.bumptech.glide.Glide
 import com.example.academicapp.R
 import com.example.academicapp.databinding.AdminAddFacultyFragmentBinding
 import com.example.academicapp.databinding.AdminUpdateFacultyFragmentBinding
 import com.example.academicapp.models.Faculty
+import com.example.academicapp.viewmodels.AdminViewModel
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import java.io.File
 
-class AdminUpdateFacultyDetailsFragment(private val faculty: Faculty): Fragment() {
+class AdminUpdateFacultyDetailsFragment(private var faculty: Faculty): Fragment() {
     private lateinit var binding: AdminAddFacultyFragmentBinding
     private lateinit var databaseReference: DatabaseReference
     private var twelthMarksheet: String? = ""
@@ -37,6 +39,7 @@ class AdminUpdateFacultyDetailsFragment(private val faculty: Faculty): Fragment(
     private lateinit var firebaseStorageForProfile: StorageReference
     private lateinit var dialog: Dialog
     private var isImageChanged = false
+    private val viewModel: AdminViewModel by activityViewModels()
 
     val getTenthMarksheetUri = registerForActivityResult(
         ActivityResultContracts.GetContent(),
@@ -73,7 +76,8 @@ class AdminUpdateFacultyDetailsFragment(private val faculty: Faculty): Fragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.uploadFacultyButton.setText(getString(R.string.update_faculty))
-        setValues(faculty)
+        setValues(faculty = faculty)
+
         binding.faculty10MarksheetEditText.setOnClickListener {
             selectTenthMarksheetPdf()
         }
