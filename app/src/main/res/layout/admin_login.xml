@@ -6,14 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragments.AdminLoginFragment">
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/gla_icon"
         android:layout_width="120dp"
         android:layout_height="120dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:src="@drawable/gla_logo"
+        android:src="@drawable/academia_logo"
         android:layout_marginTop="80dp"/>
 
     <TextView
@@ -23,11 +23,11 @@
         app:layout_constraintTop_toBottomOf="@+id/gla_icon"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Enter Your Credentials To Login!"
+        android:text="Enter Your Credentials!"
         android:textStyle="bold"
         android:textSize="20sp"
         android:layout_marginTop="40dp"
-        android:textColor="#288008"/>
+        android:textColor="#058FDF"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/admin_id_login_layout"

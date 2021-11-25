@@ -3,15 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#E0F8DD">
+    android:background="#FFF5D2">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="50dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/gla_logo"/>
+        android:src="@drawable/academia_logo"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
