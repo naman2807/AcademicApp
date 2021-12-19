@@ -1,5 +1,5 @@
 # Academic App
-A basic android app in kotlin which is used by students and faculty of university/ students to do their academic work. 
+A basic android app in kotlin which is used by any educational institution to do their academic work. 
 There will be three separate modules:
 1. Admin
 2. Faculty
