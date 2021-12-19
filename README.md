@@ -1,8 +1,17 @@
 # Academic App
 A basic android app in kotlin which is used by students and faculty of university/ students to do their academic work. 
-There will be two separate modules: 1 for students and 1 for faculty.
+There will be three separate modules:
+1. Admin
+2. Faculty
+3. Students
 
-# Students Module
+# Admin Module
 It contains the following functionality:
-1. Sign up functionality.
-2. Login functionality.
+1. Login.
+2. Upload Notice.
+3. Upload Function images.
+4. Upload pdf.
+5. Add faculty.
+6. Update faculty.
+7. Logout.
+
